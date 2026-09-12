@@ -972,6 +972,8 @@
     <Content Include="Views\Module\AboutPage.cshtml" />
     <Content Include="Views\Module\LoginPage.cshtml" />
     <Content Include="Views\Module\RegistrationPage.cshtml" />
+    <Content Include="Views\Module\ContactsPage.cshtml" />
+    <Content Include="Views\Shared\_TaskTrackerLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

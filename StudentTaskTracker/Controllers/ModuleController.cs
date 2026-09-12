@@ -28,5 +28,10 @@ namespace StudentTaskTracker.Controllers
             return View();
         }
 
+        public ActionResult ContactsPage()
+        {
+            return View();
+        }
+
     }
 }
