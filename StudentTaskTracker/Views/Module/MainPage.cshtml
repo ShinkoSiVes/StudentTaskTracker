@@ -2,5 +2,52 @@
     Layout = "~/Views/Shared/_TaskTrackerLayout.cshtml";
 }
 
+<div class="flex justify-center items-center min-h-screen">
+    <div class="card bg-base-100 w-[850px] shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title">Registration Page</h2>
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
 
-<p ng-init="nameoffunc()">Main Page</p>
+                <label class="label">First Name</label>
+                <input type="text" class="input w-full" placeholder="Enter your first name" ng-model="FName" />
+
+                <label class="label">Middle Name</label>
+                <input type="text" class="input w-full" placeholder="Enter your middle name" ng-model="MName" />
+
+                <label class="label">Last Name</label>
+                <input type="text" class="input w-full" placeholder="Enter your last name" ng-model="LName" />
+
+                <div class="flex justify-center gap-2 mt-12">
+                    <button class="btn btn-success w-1/2" ng-click="registrationFunc()">Register</button>
+                    <button class="btn btn-error w-1/2" ng-click="cancelFunc()">Cancel</button>
+                </div>
+            </fieldset>
+            <div class="card-actions justify-end">
+            </div>
+            <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                <table class="table">
+                    @*head of the table*@
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*The following rows*@
+                        <tr ng-repeat="udata in userArray">
+                            <td>{{udata.firstName}}</td>
+                            <td>{{udata.middleName}}</td>
+                            <td>{{udata.lastName}}</td>
+                            <td><button class="btn btn btn-warning" ng-model="sample">Edit</button></td>
+                            <td><button class="btn btn btn-error" ng-model="sample2">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
