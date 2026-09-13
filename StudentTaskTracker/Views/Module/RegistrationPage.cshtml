@@ -2,4 +2,71 @@
     Layout = "~/Views/Shared/_TaskTrackerLayout.cshtml";
 }
 
+<div class="flex justify-center items-center min-h-screen">
+    <div class="card bg-base-100 w-[850px] shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title">Registration Page</h2>
+            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+
+
+                <label class="label">Username</label>
+                <input type="text" class="input w-full" placeholder="Enter your email" ng-model="UName" /   >
+
+                @*Users name div*@
+                <label class="Name flex mt-2">Enter your Name</label>
+                <div class="flex justify-center gap-2 mt-2">
+                    <input type="text" class="input w-full" placeholder="Enter your First Name" ng-model="FName" />
+                    <input type="text" class="input w-full" placeholder="Enter your Last Name" ng-model="LName" />
+                </div>
+
+                <label class="label">Email</label>
+                <input type="text" class="input w-full" placeholder="Enter your email" ng-model="Email" />
+
+                <label class="label">Password</label>
+                <input type="text" class="input w-full" placeholder="Enter your password" ng-model="Pass" />
+
+                <label class="label">Password Confirmation</label>
+                <input type="text" class="input w-full" placeholder="Re-enter your password" ng-model="conPass" />
+
+
+
+                @*Buttons Div*@
+                <div class="flex justify-center gap-2 mt-12">
+                    <button class="btn btn-success w-1/2" ng-click="registrationFunc()">Register</button>
+                    <button class="btn btn-error w-1/2" ng-click="clearFunc()">Clear</button>
+                </div>
+
+
+            </fieldset>
+            <div class="card-actions justify-end">
+            </div>
+            <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+                <table class="table">
+                    @*Head of the table*@
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*The repeating rows*@
+                        <tr ng-repeat="udata in userArray">
+                            <td>{{$index + 1}}</td>
+                            <td>{{udata.userName}}</td>
+                            <td>{{udata.firstName + " " + udata.lastName}}</td>
+                            <td>{{udata.email}}</td>
+                            <td><button class="btn btn btn-warning" ng-model="sample">Edit</button></td>
+                            <td><button class="btn btn btn-error" ng-model="sample2">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
