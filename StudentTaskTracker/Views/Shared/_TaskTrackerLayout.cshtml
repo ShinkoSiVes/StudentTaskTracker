@@ -7,19 +7,36 @@
 
     @*this implements the tailwindcss*@
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>
+
+<header class="navbar bg-base-100 shadow-sm px-6">
+    <span class="text-xl font-bold">StudentTaskTracker</span>
+    <nav class="flex gap-4 ml-auto">
+        <a href="/Module/MainPage" >Home</a>
+        <a href="/Module/AboutPage">About</a>
+        <a href="/Module/ContactsPage">Contact</a>
+        <a href="/Module/LoginPage">Logout</a>
+    </nav>
+</header>
+
 <body ng-app="StudentTaskTrackerModule" ng-controller="StudentTaskTrackerController" class="bg-base-100 min-h-screen">
     <div>
         @RenderBody()
     </div>
 
-    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
+    <script src="~/Scripts/jquery-3.7.0.min.js" ></script>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/HolyScripts/Module.js"></script>
     <script src="~/Scripts/HolyScripts/Service.js"></script>
     <script src="~/Scripts/HolyScripts/Controller.js"></script>
+
 </body>
+
+<footer class="text-center p-4 text-sm">
+    &copy; 2026 StudentTaskTracker
+</footer>
+
 </html>

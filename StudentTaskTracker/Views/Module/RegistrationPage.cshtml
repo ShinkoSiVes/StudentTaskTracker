@@ -3,65 +3,64 @@
 }
 
 <div class="flex justify-center items-center min-h-screen">
-    <div class="card bg-base-100 w-[850px] shadow-sm">
-        <div class="card-body">
-            <h2 class="card-title">Registration Page</h2>
-            <fieldset class="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
+    <div class="bg-white w-[850px] rounded-lg shadow-sm">
+        <div class="p-6">
+            <h2 class="text-xl font-bold mb-4">Registration Page</h2>
+            <fieldset class="bg-gray-100 border border-gray-300 rounded-lg w-full p-4 flex flex-col gap-2">
 
-
-                <label class="label">Username</label>
-                <input type="text" class="input w-full" placeholder="Enter your email" ng-model="UName" /   >
+                <label class="text-sm font-medium">Username</label>
+                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your username" ng-model="UName" />
 
                 @*Users name div*@
-                <label class="Name flex mt-2">Enter your Name</label>
-                <div class="flex justify-center gap-2 mt-2">
-                    <input type="text" class="input w-full" placeholder="Enter your First Name" ng-model="FName" />
-                    <input type="text" class="input w-full" placeholder="Enter your Last Name" ng-model="LName" />
+                <label class="text-sm font-medium mt-2">Enter your Name</label>
+                <div class="flex justify-center gap-2">
+                    <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your First Name" ng-model="FName" />
+                    <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your Last Name" ng-model="LName" />
                 </div>
 
-                <label class="label">Email</label>
-                <input type="text" class="input w-full" placeholder="Enter your email" ng-model="Email" />
+                <label class="text-sm font-medium">Email</label>
+                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your email" ng-model="Email" />
 
-                <label class="label">Password</label>
-                <input type="text" class="input w-full" placeholder="Enter your password" ng-model="Pass" />
+                <label class="text-sm font-medium">Password</label>
+                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your password" ng-model="Pass" />
 
-                <label class="label">Password Confirmation</label>
-                <input type="text" class="input w-full" placeholder="Re-enter your password" ng-model="conPass" />
-
-
+                <label class="text-sm font-medium">Password Confirmation</label>
+                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Re-enter your password" ng-model="conPass" />
 
                 @*Buttons Div*@
                 <div class="flex justify-center gap-2 mt-12">
-                    <button class="btn btn-success w-1/2" ng-click="registrationFunc()">Register</button>
-                    <button class="btn btn-error w-1/2" ng-click="clearFunc()">Clear</button>
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 w-1/2" ng-click="registrationFunc()">Register</button>
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 w-1/2" ng-click="clearFunc()">Clear</button>
                 </div>
 
+                <p class="text-sm text-center mt-4">
+                    Already have an account?
+                    <a href="/Module/LoginPage" class="text-blue-600 hover:underline font-medium">Login here</a>
+                </p>
 
             </fieldset>
-            <div class="card-actions justify-end">
-            </div>
-            <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-                <table class="table">
-                    @*Head of the table*@
+
+            <div class="overflow-x-auto rounded-lg border border-gray-200 bg-white mt-6">
+                <table class="w-full border-collapse">
                     <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Username</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                        <tr class="bg-gray-100 text-left">
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Username</th>
+                            <th class="p-3">Name</th>
+                            <th class="p-3">Email</th>
+                            <th class="p-3 text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @*The repeating rows*@
-                        <tr ng-repeat="udata in userArray">
-                            <td>{{$index + 1}}</td>
-                            <td>{{udata.userName}}</td>
-                            <td>{{udata.firstName + " " + udata.lastName}}</td>
-                            <td>{{udata.email}}</td>
-                            <td><button class="btn btn btn-warning" ng-model="sample">Edit</button></td>
-                            <td><button class="btn btn btn-error" ng-model="sample2">Delete</button></td>
+                        <tr ng-repeat="udata in userArray" class="border-t border-gray-200">
+                            <td class="p-3">{{udata.id}}</td>
+                            <td class="p-3">{{udata.userName}}</td>
+                            <td class="p-3">{{udata.firstName + " " + udata.lastName}}</td>
+                            <td class="p-3">{{udata.email}}</td>
+                            <td class="p-3 flex justify-center gap-2">
+                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded" ng-click="editFunc($index)">Edit</button>
+                                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded" ng-click="deleteFunc($index)">Delete</button>                           
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -69,4 +68,3 @@
         </div>
     </div>
 </div>
-

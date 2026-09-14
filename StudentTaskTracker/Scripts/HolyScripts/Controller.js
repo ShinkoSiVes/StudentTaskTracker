@@ -1,6 +1,7 @@
 ﻿app.controller("StudentTaskTrackerController", function ($scope, StudentTaskTrackerService) {
 
-    $scope.userArray = [];
+    $scope.userArray = []; 
+    var nextId = 1;
 
     $scope.registrationFunc = function () {
         // filtering section
@@ -17,6 +18,7 @@
         // input array section
         } else {
             var userData = {
+                id: nextId++,
                 userName: $scope.UName,
                 firstName: $scope.FName,
                 lastName: $scope.LName,
@@ -26,6 +28,7 @@
             };
 
             $scope.userArray.push(userData);
+
         }
     };
 
@@ -37,5 +40,49 @@
         $scope.Pass = "";
         $scope.conPass = "";
     };
+
+    $scope.editFunc = function (userId) {
+        var userData = $scope.userArray[userId];
+        userData.userName = $scope.UName;
+        userData.firstName = $scope.FName;
+        userData.lastName = $scope.LName;
+        userData.email = $scope.Email; 
+        userData.password = $scope.Pass;
+        userData.confirmationPassword = $scope.conPass;
+    }
+
+    $scope.deleteFunc = function (index) {
+        $scope.delswalFunc(
+            "Are you sure you want to delete this?",
+            "Yes",
+            "No",
+            function () {
+                $scope.userArray.splice(index, 1);
+                $scope.$apply();
+            }
+        );
+    }
+
+    $scope.delswalFunc = function (message, confirmMessage, denyMessage, onConfirm) {
+        Swal.fire({
+            title: message,
+            showDenyButton: true,
+            confirmButtonText: confirmMessage,
+            denyButtonText: denyMessage
+        }).then((result) => {
+            if (result.isConfirmed) {
+                onConfirm();
+                Swal.fire("Deleted", "", "success");
+            }
+            else if (result.isDenied) {
+                Swal.fire("Canceled Delete", "", "error");
+            }
+        });
+    };
+
+    $scope.loginFunc = function ($index) {
+        window.location.href = "/Module/MainPage";
+    }
+        
 
 });

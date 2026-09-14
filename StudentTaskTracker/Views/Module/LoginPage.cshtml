@@ -2,4 +2,35 @@
     Layout = "~/Views/Shared/_TaskTrackerLayout.cshtml";
 }
 
+@{
+    Layout = "~/Views/Shared/_TaskTrackerLayout.cshtml";
+}
 
+<div class="flex justify-center items-center min-h-screen">
+    <div class="bg-white w-[850px] rounded-lg shadow-sm">
+        <div class="p-6">
+            <h2 class="text-xl font-bold mb-4">Login Page</h2>
+            <fieldset class="bg-gray-100 border border-gray-300 rounded-lg w-full p-4 flex flex-col gap-2">
+
+                <label class="text-sm font-medium">Username/Email</label>
+                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your username or email" ng-model="UName" />
+
+                <label class="text-sm font-medium">Password</label>
+                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your password" ng-model="Pass" />
+
+                @*Buttons Div*@
+                <div class="flex justify-center gap-2 mt-12">
+                    <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 w-1/2" ng-click="loginFunc()">Login</button>
+                    <button class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 w-1/2" ng-click="clearFunc()">Clear</button>
+                </div>
+
+                @*Redirect Link*@
+                <p class="text-sm text-center mt-4">
+                    Dont have an account?
+                    <a href="/Module/RegistrationPage" class="text-blue-600 hover:underline font-medium">Register here</a>
+                </p>
+
+            </fieldset>           
+        </div>
+    </div>
+</div>
