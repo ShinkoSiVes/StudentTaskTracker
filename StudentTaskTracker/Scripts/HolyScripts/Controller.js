@@ -1,5 +1,5 @@
 ﻿app.controller("StudentTaskTrackerController", function ($scope, StudentTaskTrackerService) {
-
+    //
     $scope.userArray = [];
     var nextId = 1;
 
@@ -10,7 +10,7 @@
             $scope.LName == undefined || $scope.LName == "" ||
             $scope.Email == undefined || $scope.Email == "" ||
             $scope.Pass == undefined || $scope.Pass == "" ||
-            $scope.conPass == undefined || $scope.conPass == ""
+            $scope.conPass == undefined || $scope.conPass == "'
         ) {
 
 
