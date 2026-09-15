@@ -1,5 +1,5 @@
 ﻿app.controller("StudentTaskTrackerController", function ($scope, StudentTaskTrackerService) {
-    //
+
     $scope.userArray = [];
     var nextId = 1;
 
@@ -10,33 +10,36 @@
             $scope.LName == undefined || $scope.LName == "" ||
             $scope.Email == undefined || $scope.Email == "" ||
             $scope.Pass == undefined || $scope.Pass == "" ||
-            $scope.conPass == undefined || $scope.conPass == "'
+            $scope.conPass == undefined || $scope.conPass == ""
         ) {
-
-
-        //Need to turn these alert into sweetalert 8 here
-            alert("Please fill in all fields.");
+            $scope.swalerrorFunc("Please fill in all fields.");
         }
-        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test($scope.Pass)) {
-            alert("Use proper Password Format (8_characters,uppercase,lowercase,number, and a special character)");
+        else if (isUsernameTaken($scope.UName)) {
+            $scope.swalerrorFunc("Username is already taken.");
         }
-        else if ($scope.UName.length < 3 || $scope.UName.length > 20) {
-            alert("Username must be between 3 and 20 characters..");
+        else if (isEmailTaken($scope.Email)) {
+            $scope.swalerrorFunc("Email is already taken.");
+        }
+        else if ($scope.UName.length < 3 || $scope.UName.length > 75) {
+            $scope.swalerrorFunc("Username must be atleast 3 or more..");
         }
         else if ($scope.FName.length < 2 || $scope.FName.length > 30) {
-            alert("First Name must be between 3 and 20 characters..");
+            $scope.swalerrorFunc("First Name must be atleast 2 or more..");
         }
         else if ($scope.LName.length < 2 || $scope.LName.length > 30) {
-            alert("Last Name must be between 3 and 20 characters..");
+            $scope.swalerrorFunc("Last Name must be atleast 2 or more..");
         }
-        else if ($scope.Pass.length < 8 || $scope.Pass.length > 50) {
-            alert("Password must be between 3 and 20 characters..");
+        else if ($scope.Pass.length < 8 || $scope.Pass.length > 75) {
+            $scope.swalerrorFunc("Password must be atleast 8 or more");
         }
         else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($scope.Email)) {
-            alert("Please enter a proper email format");
+            $scope.swalerrorFunc("Please enter a proper email format");
+        }
+        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test($scope.Pass)) {
+            $scope.swalerrorFunc("Use proper Password Format (8 characters, uppercase, lowercase, number, and a special character)");
         }
         else if ($scope.Pass !== $scope.conPass) {
-            alert("Password Mismatch please check your Password and Password confirmation and try again");
+            $scope.swalerrorFunc("Password Mismatch please check your Password and Password confirmation and try again");
         }
         else {
             var userData = {
@@ -51,7 +54,7 @@
 
             $scope.userArray.push(userData);
             $scope.clearFunc();
-            $scope.swalsuccessFunc();
+            $scope.swalsuccessFunc("Registration successful!");
         }
     };
 
@@ -62,19 +65,57 @@
         $scope.Email = "";
         $scope.Pass = "";
         $scope.conPass = "";
-        $scope.swalsuccessFunc();
+        $scope.loginPass = "";
+        $scope.loginUName = "";
     };
 
     $scope.editFunc = function (userId) {
-        var userData = $scope.userArray[userId];
-        userData.userName = $scope.UName;
-        userData.firstName = $scope.FName;
-        userData.lastName = $scope.LName;
-        userData.email = $scope.Email;
-        userData.password = $scope.Pass;
-        userData.confirmationPassword = $scope.conPass;
-        $scope.clearFunc();
-    }
+
+        if (
+            $scope.UName == undefined || $scope.UName == "" ||
+            $scope.FName == undefined || $scope.FName == "" ||
+            $scope.LName == undefined || $scope.LName == "" ||
+            $scope.Email == undefined || $scope.Email == "" ||
+            $scope.Pass == undefined || $scope.Pass == "" ||
+            $scope.conPass == undefined || $scope.conPass == ""
+        ) {
+            $scope.swalerrorFunc("Please fill in everything.");
+        }
+        else if (isUsernameTaken($scope.UName, userId)) {
+            $scope.swalerrorFunc("Username is already taken.");
+        }
+        else if (isEmailTaken($scope.Email, userId)) {
+            $scope.swalerrorFunc("Email is already taken.");
+        }
+        else if (
+            $scope.UName.length < 3 || $scope.UName.length > 75 ||
+            $scope.FName.length < 2 || $scope.FName.length > 30 ||
+            $scope.LName.length < 2 || $scope.LName.length > 30
+        ) {
+            $scope.swalerrorFunc("Username must be 3-75 characters, and First/Last Name must be 2-30 characters.");
+        }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($scope.Email)) {
+            $scope.swalerrorFunc("Please enter a valid email address.");
+        }
+        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test($scope.Pass)) {
+            $scope.swalerrorFunc("Please enter a strong password. (8 characters, uppercase, lowercase, number, and a special character)");
+        }
+        else if ($scope.Pass !== $scope.conPass) {
+            $scope.swalerrorFunc("Passwords do not match.");
+        }
+        else {
+            var userData = $scope.userArray[userId];
+            userData.userName = $scope.UName;
+            userData.firstName = $scope.FName;
+            userData.lastName = $scope.LName;
+            userData.email = $scope.Email;
+            userData.password = $scope.Pass;
+            userData.confirmationPassword = $scope.conPass;
+
+            $scope.clearFunc();
+            $scope.swalsuccessFunc("Record updated successfully!");
+        }
+    };
 
     $scope.deleteFunc = function (index) {
         $scope.delswalFunc(
@@ -90,14 +131,14 @@
 
     $scope.loginFunc = function () {
         if (
-        $scope.loginUName == undefined || $scope.loginUName == "" ||
-        $scope.loginPass == undefined || $scope.loginPass == ""
+            $scope.loginUName == undefined || $scope.loginUName == "" ||
+            $scope.loginPass == undefined || $scope.loginPass == ""
         ) {
-             alert("Please fill in all fields") //Another swal heres
-          }
+            $scope.swalerrorFunc("Please fill in all fields");
+        }
         else {
             window.location.href = "/Module/MainPage";
-          }
+        }
     }
 
     $scope.copyFunc = function (index) {
@@ -106,18 +147,42 @@
         $scope.FName = userData.firstName;
         $scope.LName = userData.lastName;
         $scope.Email = userData.email;
-        $scope.swalsuccessFunc();
+        $scope.swalsuccessFunc("Data copied into the form.");
     };
 
+    function isUsernameTaken(username, excludeId) {
+        for (var i = 0; i < $scope.userArray.length; i++) {
+            if ($scope.userArray[i].userName === username && $scope.userArray[i].id !== excludeId) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    function isEmailTaken(email, excludeId) {
+        for (var i = 0; i < $scope.userArray.length; i++) {
+            if ($scope.userArray[i].email === email && $scope.userArray[i].id !== excludeId) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    $scope.swalsuccessFunc = function () {
+    $scope.swalsuccessFunc = function (message) {
         Swal.fire({
             title: "Success",
-            text: "Your input is accepted!",
+            text: message,
             icon: "success"
         });
     }
+
+    $scope.swalerrorFunc = function (message) {
+        Swal.fire({
+            title: "Error",
+            text: message,
+            icon: "error"
+        });
+    };
 
     $scope.delswalFunc = function (message, confirmMessage, denyMessage, onConfirm) {
         Swal.fire({
@@ -136,14 +201,4 @@
         });
     };
 
-
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
-    //$scope.errorswalFuncs
 });

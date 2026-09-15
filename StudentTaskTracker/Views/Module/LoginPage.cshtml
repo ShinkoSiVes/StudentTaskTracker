@@ -9,10 +9,10 @@
             <fieldset class="bg-gray-100 border border-gray-300 rounded-lg w-full p-4 flex flex-col gap-2">
 
                 <label class="text-sm">Username/Email</label>
-                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your username or email" ng-model="loginUName" />
+                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your username or email" maxlength="75" ng-model="loginUName"/>
 
                 <label class="text-sm">Password</label>
-                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your password" ng-model="loginPass" />
+                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your password" maxlength="75" ng-model="loginPass"/>
 
                 <div class="flex justify-center gap-2 mt-12">
                     <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 w-1/2" ng-click="loginFunc()">Login</button>

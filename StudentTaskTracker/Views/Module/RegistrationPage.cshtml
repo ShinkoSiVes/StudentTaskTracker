@@ -9,23 +9,23 @@
             <fieldset class="bg-gray-100 border border-gray-300 rounded-lg w-full p-4 flex flex-col gap-2">
 
                 <label class="text-sm">Username</label>
-                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your username" ng-model="UName" />
+                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your username" ng-model="UName" maxlength="75" />
 
                 @*Users name div*@
                 <label class="text-sm mt-2">Enter your Name</label>
                 <div class="flex justify-center gap-2">
-                    <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your First Name" ng-model="FName" />
-                    <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your Last Name" ng-model="LName" />
+                    <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your First Name" ng-model="FName" maxlength="30" />
+                    <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your Last Name" ng-model="LName" maxlength="30" />
                 </div>
 
                 <label class="text-sm">Email</label>
-                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your email" ng-model="Email" />
+                <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your email" ng-model="Email" maxlength="50" />
 
                 <label class="text-sm">Password</label>
-                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your password" ng-model="Pass" />
+                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your password" ng-model="Pass" maxlength="75" />
 
                 <label class="text-sm">Password Confirmation</label>
-                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Re-enter your password" ng-model="conPass" />
+                <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Re-enter your password" ng-model="conPass" maxlength="75" />
 
                 @*Buttons Div*@
                 <div class="flex justify-center gap-2 mt-12">
