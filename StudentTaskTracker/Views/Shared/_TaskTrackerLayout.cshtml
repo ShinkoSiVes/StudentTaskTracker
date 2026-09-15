@@ -3,7 +3,7 @@
 <html class="bg-[#183642]">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>@(ViewBag.Title ?? "Digi-Pin")</title>
 
     @*this implements the tailwindcss*@
     <script src="https://cdn.tailwindcss.com"></script>
@@ -29,8 +29,19 @@
         @RenderBody()
     </div>
 
-    <footer class="text-center p-4 text-sm text-[#FDF0D5]/60">
-        &copy; 2026 Digi-Pin
+    <footer class="mt-auto border-t border-[#313D5A] bg-[#183642] py-6 px-10 text-sm text-[#FDF0D5]/70">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-[#FDF0D5]">Digi-Pin</span>
+                <span>&copy; 2026 All rights reserved.</span>
+            </div>
+            <nav class="flex items-center gap-6 text-xs">
+                <a href="/Module/AboutPage" class="hover:text-white transition-colors">About</a>
+                <a href="/Module/ContactsPage" class="hover:text-white transition-colors">Contact</a>
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+            </nav>
+        </div>
     </footer>
 
     <script src="~/Scripts/jquery-3.7.0.min.js"></script>
