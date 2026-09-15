@@ -93,7 +93,7 @@
         $scope.loginUName == undefined || $scope.loginUName == "" ||
         $scope.loginPass == undefined || $scope.loginPass == ""
         ) {
-             alert("Please fill in all fields") //Another swal here
+             alert("Please fill in all fields") //Another swal heres
           }
         else {
             window.location.href = "/Module/MainPage";
