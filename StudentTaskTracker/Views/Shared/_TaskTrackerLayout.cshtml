@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 
-<html>
+<html class="bg-[#183642]">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -8,35 +8,36 @@
     @*this implements the tailwindcss*@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
 </head>
 
-<header class="navbar bg-base-100 shadow-sm px-6">
-    <span class="text-xl font-bold">StudentTaskTracker</span>
-    <nav class="flex gap-4 ml-auto">
-        <a href="/Module/MainPage" >Home</a>
-        <a href="/Module/AboutPage">About</a>
-        <a href="/Module/ContactsPage">Contact</a>
-        <a href="/Module/LoginPage">Logout</a>
-    </nav>
-</header>
+<body ng-app="StudentTaskTrackerModule" ng-controller="StudentTaskTrackerController" class="bg-[#183642] min-h-screen">
 
-<body ng-app="StudentTaskTrackerModule" ng-controller="StudentTaskTrackerController" class="bg-base-100 min-h-screen">
+    @if (ViewBag.HideHeader != true)
+    {
+        <header class="flex items-center justify-between shadow-sm px-10 py-4 bg-[#313D5A] rounded-b-lg">
+            <span class="text-xl font-bold text-white">Digi-Pin</span>
+            <nav class="flex items-center gap-6">
+                <a href="/Module/MainPage" class="text-sky-100 hover:text-white transition-colors">Home</a>
+                <a href="/Module/AboutPage" class="text-sky-100 hover:text-white transition-colors">About</a>
+                <a href="/Module/ContactsPage" class="text-sky-100 hover:text-white transition-colors">Contact</a>
+                <a href="/Module/LoginPage" class="text-white bg-sky-800 hover:bg-sky-700 px-4 py-2 rounded transition-colors">Logout</a>
+            </nav>
+        </header>
+    }
+
     <div>
         @RenderBody()
     </div>
 
-    <script src="~/Scripts/jquery-3.7.0.min.js" ></script>
+    <footer class="text-center p-4 text-sm text-[#FDF0D5]/60">
+        &copy; 2026 Digi-Pin
+    </footer>
+
+    <script src="~/Scripts/jquery-3.7.0.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/HolyScripts/Module.js"></script>
     <script src="~/Scripts/HolyScripts/Service.js"></script>
     <script src="~/Scripts/HolyScripts/Controller.js"></script>
 
 </body>
-
-<footer class="text-center p-4 text-sm">
-    &copy; 2026 StudentTaskTracker
-</footer>
-
 </html>

@@ -8,23 +8,23 @@
             <h2 class="text-xl font-bold mb-4">Registration Page</h2>
             <fieldset class="bg-gray-100 border border-gray-300 rounded-lg w-full p-4 flex flex-col gap-2">
 
-                <label class="text-sm font-medium">Username</label>
+                <label class="text-sm">Username</label>
                 <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your username" ng-model="UName" />
 
                 @*Users name div*@
-                <label class="text-sm font-medium mt-2">Enter your Name</label>
+                <label class="text-sm mt-2">Enter your Name</label>
                 <div class="flex justify-center gap-2">
                     <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your First Name" ng-model="FName" />
                     <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your Last Name" ng-model="LName" />
                 </div>
 
-                <label class="text-sm font-medium">Email</label>
+                <label class="text-sm">Email</label>
                 <input type="text" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your email" ng-model="Email" />
 
-                <label class="text-sm font-medium">Password</label>
+                <label class="text-sm">Password</label>
                 <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Enter your password" ng-model="Pass" />
 
-                <label class="text-sm font-medium">Password Confirmation</label>
+                <label class="text-sm">Password Confirmation</label>
                 <input type="password" class="border border-gray-300 px-3 py-2 w-full" placeholder="Re-enter your password" ng-model="conPass" />
 
                 @*Buttons Div*@
@@ -58,8 +58,9 @@
                             <td class="p-3">{{udata.firstName + " " + udata.lastName}}</td>
                             <td class="p-3">{{udata.email}}</td>
                             <td class="p-3 flex justify-center gap-2">
-                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded" ng-click="editFunc($index)">Edit</button>
-                                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded" ng-click="deleteFunc($index)">Delete</button>                           
+                                <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-full" ng-click="editFunc($index)">Edit</button>
+                                <button class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-full" ng-click="deleteFunc($index)">Delete</button>
+                                <button class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-full" ng-click="copyFunc($index)">Copy</button>
                             </td>
                         </tr>
                     </tbody>

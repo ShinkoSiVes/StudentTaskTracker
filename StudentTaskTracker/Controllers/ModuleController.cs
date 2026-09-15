@@ -10,6 +10,7 @@ namespace StudentTaskTracker.Controllers
     {
         public ActionResult MainPage()
         {
+            ViewBag.WelcomeMessage = "Welcome to my Student Task Tracker!";
             return View();
         }
 
@@ -20,11 +21,13 @@ namespace StudentTaskTracker.Controllers
 
         public ActionResult LoginPage()
         {
+            ViewBag.HideHeader = true;
             return View();
         }
 
         public ActionResult RegistrationPage()
         {
+            ViewBag.HideHeader = true;
             return View();
         }
 
